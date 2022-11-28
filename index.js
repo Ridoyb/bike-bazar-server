@@ -114,7 +114,15 @@ async function run() {
       
           // get my order api
       
-          
+          app.get("/my-orders/:email", async (req, res) => {
+            const email = req.params.email;
+            const filter = { email };
+            const result = await bookingsCollection
+              .find(filter)
+              .sort({ _id: -1 })
+              .toArray();
+            res.send(result);
+          });
 
 
           app.get('/bookings/:id', async (req, res) => {
