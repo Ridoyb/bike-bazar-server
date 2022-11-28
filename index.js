@@ -88,7 +88,11 @@ async function run() {
           });
           // advertised
       
-          
+          app.post("/advertise", async (req, res) => {
+            const product = req.body;
+            const result = await advertiseCollection.insertOne(product);
+            res.send(result);
+          });
       
           // get my products api
       
